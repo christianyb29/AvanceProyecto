@@ -36,7 +36,9 @@ public class Tienda extends JFrame implements ActionListener {
 	private JMenu mnAyuda;
 	private JMenuItem mntmAcercaDeTienda;
 	ConsultarCocina consultarCocina = new ConsultarCocina();
-	
+	ModificarCocina modificarCocina = new ModificarCocina();
+	ListarCocinas listarCocinas = new ListarCocinas();
+
 	/**
 	 * Launch the application.
 	 */
@@ -46,8 +48,7 @@ public class Tienda extends JFrame implements ActionListener {
 				try {
 					Tienda frame = new Tienda();
 					frame.setVisible(true);
-				}
-				catch (Exception e) {
+				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
@@ -61,76 +62,98 @@ public class Tienda extends JFrame implements ActionListener {
 		setTitle("Tienda 1.0");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 646, 478);
-		
+
 		menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
-		
+
 		mnArchivo = new JMenu("Archivo");
 		menuBar.add(mnArchivo);
-		
+
 		mntmSalir = new JMenuItem("Salir");
 		mnArchivo.add(mntmSalir);
-		
+
 		mnMantenimiento = new JMenu("Mantenimiento");
 		menuBar.add(mnMantenimiento);
-		
+
 		mntmConsultarCocina = new JMenuItem("Consultar Cocina");
 		mntmConsultarCocina.addActionListener(this);
 		mnMantenimiento.add(mntmConsultarCocina);
-		
+
 		mntmModificarCocina = new JMenuItem("Modificar Cocina");
+		mntmModificarCocina.addActionListener(this);
 		mnMantenimiento.add(mntmModificarCocina);
-		
+
 		mntmListarCocinas = new JMenuItem("Listar Cocinas");
+		mntmListarCocinas.addActionListener(this);
 		mnMantenimiento.add(mntmListarCocinas);
-		
+
 		mnVentas = new JMenu("Ventas");
 		menuBar.add(mnVentas);
-		
+
 		mntmVender = new JMenuItem("Vender");
 		mnVentas.add(mntmVender);
-		
+
 		mntmGenerarReporte = new JMenuItem("Generar Reporte");
 		mnVentas.add(mntmGenerarReporte);
-		
+
 		mnConfiguracin = new JMenu("Configuraci\u00F3n");
 		menuBar.add(mnConfiguracin);
-		
+
 		mntmConfigurarDescuentos = new JMenuItem("Configurar Descuentos");
 		mnConfiguracin.add(mntmConfigurarDescuentos);
-		
+
 		mntmConfigurarObsequios = new JMenuItem("Configurar Obsequios");
 		mnConfiguracin.add(mntmConfigurarObsequios);
-		
+
 		mntmConfigurarCantidadptima = new JMenuItem("Configurar Cantidad \u00D3ptima");
 		mnConfiguracin.add(mntmConfigurarCantidadptima);
-		
+
 		mntmConfigurarCuotaDiaria = new JMenuItem("Configurar Cuota Diaria");
 		mnConfiguracin.add(mntmConfigurarCuotaDiaria);
-		
+
 		mnAyuda = new JMenu("Ayuda");
 		menuBar.add(mnAyuda);
-		
+
 		mntmAcercaDeTienda = new JMenuItem("Acerca de Tienda");
 		mnAyuda.add(mntmAcercaDeTienda);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		desktopPane = new JDesktopPane();
 		desktopPane.setBounds(0, 0, 620, 406);
 		desktopPane.setBackground(Color.WHITE);
 		contentPane.add(desktopPane);
 		desktopPane.setLayout(null);
+		consultarCocina.setSize(420, 200);
+		consultarCocina.setLocation(10, 7);
 		desktopPane.add(consultarCocina);
+		modificarCocina.setLocation(10, 7);
+		desktopPane.add(modificarCocina);
+		listarCocinas.setLocation(10, 7);
+		desktopPane.add(listarCocinas); 
 	}
+
 	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == mntmListarCocinas) {
+			actionPerformedMntmListarCocinas(e);
+		}
+		if (e.getSource() == mntmModificarCocina) {
+			actionPerformedMntmModificarCocina(e);
+		}
 		if (e.getSource() == mntmConsultarCocina) {
 			actionPerformedMntmConsultarCocina(e);
 		}
 	}
+
 	protected void actionPerformedMntmConsultarCocina(ActionEvent e) {
 		consultarCocina.setVisible(true);
+	}
+	protected void actionPerformedMntmModificarCocina(ActionEvent e) {
+		modificarCocina.setVisible(true);
+	}
+	protected void actionPerformedMntmListarCocinas(ActionEvent e) {
+		listarCocinas.setVisible(true);
 	}
 }
